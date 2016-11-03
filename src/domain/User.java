@@ -1,7 +1,9 @@
-package persistent;
-//User Class
+package domain;
 
-public class User {
+import java.io.Serializable;
+import java.util.Date;
+
+public class User implements Serializable{
 	
 	//公有类
 	//不带参数的构造方法
@@ -11,15 +13,13 @@ public class User {
 	private String userAccount;
 	private String firstName;
 	private String lastName;
-	private String Address;
-	private String city;
-	private String state;
-	private String country;
-	private String postalCode;
-	private String phone;
+	private String password;
 	private String email;
+	private Date lastVisit;
+	private String lastIp;
 	
 	public User(){
+		
 	}
 	
 	public User(String userAccount, String firstName, String lastName) {
@@ -27,9 +27,18 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	public User(String userAccount, String firstName, String lastName, String password) {
+		this(userAccount,firstName,lastName);
+		this.password = password;
+	}
+	public User(String userAccount, String firstName, String lastName, String password, String email) {
+		this(userAccount, firstName, lastName, password);
+		this.email = email;
+		
+	}
 	
 	public String toString() {
-		return this.userId + "," + this.userAccount +", " + this.firstName + " " + lastName +".";
+		return this.userAccount +", " + this.firstName + " " + lastName +", " + this.email + ".";
 	}
 	
 	public int getUserId() {
@@ -56,47 +65,28 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getAddress() {
-		return Address;
-	}
-	public void setAddress(String address) {
-		Address = address;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getPostalCode() {
-		return postalCode;
-	}
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Date getLastVisit() {
+		return lastVisit;
+	}
+
+	public void setLastVisit(Date lastVisit) {
+		this.lastVisit = lastVisit;
+	}
+
+	public String getLastIp() {
+		return lastIp;
+	}
+
+	public void setLastIp(String lastIp) {
+		this.lastIp = lastIp;
 	}
 	
 	
