@@ -22,7 +22,7 @@ public class TestUserService {
 	public void hasMatchUser() {
 		boolean b1 = userService.hasMatch("wendy", "0000");
 		boolean b2 = userService.hasMatch("Shile","1921");
-		//System.out.println(b2);
+		System.out.println(b1);
 		assertTrue(b1);
 		assertTrue(!b2);
 	}

@@ -25,11 +25,12 @@ public class LoginController {
 	
 	@RequestMapping(value="/loginCheck.html")
 	public ModelAndView loginCheck(HttpServletRequest request, LoginCommand loginCommand) {
-		boolean isValidUser = userService.hasMatch(loginCommand.getUseName(), loginCommand.getPassword());
+		boolean isValidUser = userService.hasMatch(loginCommand.getUserName(), loginCommand.getPassword());
 		if (!isValidUser) {
+			System.out.println(loginCommand.getUserName() + " " + loginCommand.getPassword());
 			return new ModelAndView("login", "error", "User account or password is not valid.");
 		} else {
-			User user = userService.findUserByName(loginCommand.getUseName());
+			User user = userService.findUserByName(loginCommand.getUserName());
 			user.setLastIp(request.getRemoteAddr());
 			user.setLastVisit(new Date());
 			userService.loginSuccess(user);
