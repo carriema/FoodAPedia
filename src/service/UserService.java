@@ -3,10 +3,10 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dao.LoginLogDao;
-import dao.UserDao;
-import domain.LoginLog;
-import domain.User;
+import com.food.dao.LoginLogDao;
+import com.food.dao.UserDao;
+import com.food.domain.LoginLog;
+import com.food.domain.User;
 
 @Service
 public class UserService {
@@ -17,7 +17,7 @@ public class UserService {
 	private LoginLogDao loginLogDao;
 	
 	public boolean hasMatch(String userName, String password) {
-		int matchCount= userDao.getMathCount(userName, password);
+		int matchCount= userDao.getMatchCount(userName, password);
 		return matchCount > 0;
 	}
 	public User findUserByName(String userName) {

@@ -2,20 +2,19 @@ package com.food.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
-import domain.User;
+import com.food.domain.User;
 
 @Repository
-public class UserDao {
+public class UserDao extends baseDao<User>{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	public int getMathCount(String userName, String password){
+	public int getMatchCount(String userName, String password){
 		String sqlStr = "SELECT count(*) from Customer WHERE CustomerAccount = ? and password = ?";
 		int res = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{userName, password});
 		return res;

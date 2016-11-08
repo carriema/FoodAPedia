@@ -11,6 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="t_login_log")
 public class LoginLog implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	@Column(name="login_log_id")
