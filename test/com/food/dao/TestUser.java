@@ -31,21 +31,26 @@ public class TestUser {
 	public void testFindUserByserAccount() {
 		User user = userDao.findUserByserAccount("wendy");
 		assertEquals(user.getFirstName(),"Liyan");
+		assertTrue(!user.getFirstName().equals("haha"));
 	}
 	@Test
-	public void save() {
-		User user = new User();
-		user.setUserAccount("erha");
-		user.setFirstName("yanyan");
-		user.setLastName("xiao");
+	public void testHashUserByAccount() {
+		assertTrue(userDao.hasUserByAccount("wendy"));
+		assertTrue(!userDao.hasUserByAccount("Scirhakj"));
+	}
+	@Test
+	public void update() {
+		User user = userDao.findUserByserAccount("wendy");
 		user.setLastVisit(new Date());
-		userDao.save(user);
+		userDao.updateLoginInfo(user);
 	}
-	
-	
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
+//	@Test
+//	public void save() {
+//		User user = new User();
+//		user.setUserAccount("erha");
+//		user.setFirstName("yanyan");
+//		user.setLastName("xiao");
+//		user.setLastVisit(new Date());
+//		userDao.save(user);
+//	}
 }

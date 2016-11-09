@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title>Restaurant Searching System</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<c:if test="${!empty error}">
@@ -12,7 +13,13 @@
 		User Account : <input type ="text" name="userName">
 		Password : <input type = "password" name="password">
 		<input type="submit" value="Login">
-		<input type="reset" value="Reset">		
+		<input type="reset" value="Reset">	
+		<button id="register">Register</button>	
 		</form>
 	</body>
+	<script>
+		$("#register").onclick = function () {
+	        location.href = "/register.jsp";
+	    };
+	</script>
 </html>

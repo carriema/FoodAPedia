@@ -1,41 +1,41 @@
 package com.food.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.food.domain.User;
 
 @Repository
 public class UserDao extends baseDao<User>{
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	public int getMatchCount(String userName, String password){
-		String sqlStr = "SELECT count(*) from Customer WHERE CustomerAccount = ? and password = ?";
-		int res = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{userName, password});
-		return res;
+	public UserDao(){
+		super(User.class);
+	}
+	public Long getMatchCount(String userName, String password){
+		System.out.println("getHere");
+		String sqlStr = "SELECT count(*) from User WHERE userAccount = ? and password = ?";
+		Object[] params = {userName, password};
+		//List res1 = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{userName, password});
+		 List res = getHibernateTemplate().find(sqlStr, params);
+		return (Long) res.get(0);
+	}
+	public boolean hasUserByAccount(String userAccount) {
+		String sql = "Select count(*) FROM User WHERE userAccount = ?";
+		Object[] params = {userAccount};
+		List res = getHibernateTemplate().find(sql, params);
+		return ((Long)res.get(0) > 0);
 	}
 	public User findUserByserAccount(String userAccount) {
-		String sql = "Select Customer_Id, CustomerAccount, FirstName, LastName, password FROM Customer WHERE CustomerAccount = ?";
-		final User user = new User();
-		jdbcTemplate.query(sql, new Object[]{userAccount},
-				new RowCallbackHandler(){
-			public void processRow(ResultSet rs) throws SQLException{
-				user.setUserAccount(userAccount);
-				user.setUserId(rs.getInt("Customer_Id"));
-				user.setFirstName(rs.getString("FirstName"));
-				user.setLastName(rs.getString("LastName"));
-			}
-		});
-		return user;
+//		User user = super.get(userAccount);
+		String sql = "FROM User WHERE userAccount = ?";
+		Object[] params = {userAccount};
+		List res = getHibernateTemplate().find(sql, params);
+		return (User)res.get(0);
 	}
+	@Transactional
 	public void updateLoginInfo(User user) {
-		String sql = "UPDATE Customer SET last_visit = ?, last_ip = ? where Customer_Id = ?";
-		jdbcTemplate.update(sql, new Object[]{user.getLastVisit(), user.getLastIp(),user.getUserId()});
+		getHibernateTemplate().update(user);
 	}
 
 }

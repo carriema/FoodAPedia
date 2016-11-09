@@ -18,6 +18,9 @@ public class RestaurantDao extends baseDao<Restaurant>{
 	private JdbcTemplate jdbcTemplate;
 	private final String findByName = "SELECT * FROM Restaurant WHERE name LIKE ?";
 	//private final String findByDishName = "SELECT"
+	public RestaurantDao() {
+		super(Restaurant.class);
+	}
 	public int getMathCount(String account, String password){
 		String sqlStr = "SELECT count(*) from Restaurant WHERE Account = ? and password = ?";
 		int res = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{account, password});
@@ -44,8 +47,8 @@ public class RestaurantDao extends baseDao<Restaurant>{
 		});
 		return restaurants;
 	}
-//	public List<Restaurant> findRestaurantByDishName(String name) {
-//		List<Restaurant> restaurants = findRestaurantByName(findByDishName, name);
-//		return restaurants;
-//	}
+	public List<Restaurant> findRestaurantByDishName(String name) {
+		List<Restaurant> restaurants = findRestaurantByName(findByDishName, name);
+		return restaurants;
+	}
 }

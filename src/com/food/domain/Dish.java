@@ -32,7 +32,7 @@ public class Dish implements Serializable{
 	@JoinTable(name="Cuisine",
 			joinColumns={@JoinColumn(name="Dish_Id")},
 			inverseJoinColumns={@JoinColumn(name="Ingredient_Id")})
-	private HashSet<Ingredient> ingredient;
+	private Set<Ingredient> ingredient;
 	public int getDishID() {
 		return dishID;
 	}
@@ -51,7 +51,7 @@ public class Dish implements Serializable{
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public HashSet<Ingredient> getIngredient() {
+	public Set<Ingredient> getIngredient() {
 		return ingredient;
 	}
 	public void setIngredient(HashSet<Ingredient> ingredient) {

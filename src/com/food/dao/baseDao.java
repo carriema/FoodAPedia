@@ -1,25 +1,32 @@
 package com.food.dao;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 @SuppressWarnings("unchecked")
+
 @Repository
 public class baseDao<T>{
 	private Class<T> entityClass;
+	
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
+	
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
-	
 	public baseDao() {
-		this.entityClass = (Class<T>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
+		
+	}
+	public void setEntityClass(Class<T> entityClass) {
+		this.entityClass = entityClass;
+	}
+	public baseDao(Class<T> entityClass) {
+		this.entityClass = entityClass;
 	}
 	public T load(Serializable id) {
 		return (T)getHibernateTemplate().load(entityClass,id);
@@ -29,11 +36,13 @@ public class baseDao<T>{
 		return (T)getHibernateTemplate().get(entityClass, id);
 	}
 	public List<T> loadAll(Serializable id) {
-		return getHibernateTemplate().loadAll(entityClass);
+		return (List<T>) getHibernateTemplate().loadAll(entityClass);
 	}
+	@Transactional
 	public void save(T entity) {
 		getHibernateTemplate().save(entity);
 	}
+	@Transactional
 	public void remove(T entity) {
 		getHibernateTemplate().delete(entity);
 	}

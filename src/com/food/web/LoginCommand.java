@@ -1,4 +1,4 @@
-package web;
+package com.food.web;
 
 public class LoginCommand {
 	private String userName;

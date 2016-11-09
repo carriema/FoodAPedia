@@ -1,9 +1,11 @@
 package com.food.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ResDish {
+public class ResDish implements Serializable{
 	private int R_Id;
 	private int Dish_Id;
 	public ResDish() {

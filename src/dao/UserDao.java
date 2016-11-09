@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.User;
 
-@Repository
+@Repository("baseDao")
 public class UserDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
