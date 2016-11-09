@@ -17,9 +17,7 @@
     <!-- Scan Dao -->
     <context:component-scan base-package="com.food.dao"/>
     <context:component-scan base-package="com.food.service"/>
-    <context:component-scan base-package="com.food.web">
-         <context:include-filter type="aspectj" expression="com.bd.*" />
-    </context:component-scan>
+    
     <context:annotation-config />
 	<context:property-placeholder location="classpath:JDBC.properties"/>
 	<bean id="dataSource"
@@ -49,12 +47,7 @@
 	<bean id="hibernateTemplate"
 	    class="org.springframework.orm.hibernate4.HibernateTemplate"
 	    p:sessionFactory-ref="sessionFactory"/>
-	<tx:annotation-driven/>
-	<aop:config proxy-target-class="true">
-        <aop:pointcut id="serviceMethod"
-            expression=" execution(* service..*(..))"/>
-        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
-    </aop:config>
+	<tx:annotation-driven />
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> 
      	<property name="sessionFactory" ref="sessionFactory" /> 
 	</bean> 

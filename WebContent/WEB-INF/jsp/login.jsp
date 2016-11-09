@@ -14,12 +14,7 @@
 		Password : <input type = "password" name="password">
 		<input type="submit" value="Login">
 		<input type="reset" value="Reset">	
-		<button id="register">Register</button>	
 		</form>
+		<a href="register.jsp">New User</a>
 	</body>
-	<script>
-		$("#register").onclick = function () {
-	        location.href = "/register.jsp";
-	    };
-	</script>
 </html>

@@ -2,6 +2,7 @@ package com.food.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.food.dao.LoginLogDao;
 import com.food.dao.UserDao;
@@ -33,11 +34,13 @@ public class UserService {
 		loginLog.setUserId(user.getUserId());
 		return loginLog;
 	}
+	@Transactional
 	public void loginSuccess(User user) {
 		userDao.updateLoginInfo(user);
 		loginLogDao.save(GenerateLogin(user));
 	}
 	//Register
+	@Transactional
 	public void register(User user) {
 		userDao.save(user);
 		loginLogDao.save(GenerateLogin(user));

@@ -39,18 +39,24 @@ public class TestUser {
 		assertTrue(!userDao.hasUserByAccount("Scirhakj"));
 	}
 	@Test
+	public void testDelete() {
+		User user = userDao.findUserByserAccount("erha");
+		userDao.remove(user);	
+	}
+	@Test
 	public void update() {
 		User user = userDao.findUserByserAccount("wendy");
 		user.setLastVisit(new Date());
 		userDao.updateLoginInfo(user);
 	}
-//	@Test
-//	public void save() {
-//		User user = new User();
-//		user.setUserAccount("erha");
-//		user.setFirstName("yanyan");
-//		user.setLastName("xiao");
-//		user.setLastVisit(new Date());
-//		userDao.save(user);
-//	}
+	@Test
+	public void save() {
+		User user = new User();
+		user.setUserAccount("erha");
+		user.setFirstName("yanyan");
+		user.setLastName("xiao");
+		user.setPassword("0000");
+		user.setLastVisit(new Date());
+		userDao.save(user);
+	}
 }

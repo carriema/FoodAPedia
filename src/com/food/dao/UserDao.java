@@ -33,7 +33,7 @@ public class UserDao extends baseDao<User>{
 		List res = getHibernateTemplate().find(sql, params);
 		return (User)res.get(0);
 	}
-	@Transactional
+	@Transactional(readOnly = false)
 	public void updateLoginInfo(User user) {
 		getHibernateTemplate().update(user);
 	}
