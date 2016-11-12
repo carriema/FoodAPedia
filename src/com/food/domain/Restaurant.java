@@ -71,7 +71,7 @@ public class Restaurant implements Serializable{
 		this.dishes = dishes;
 	}
 	public void addDishes(Dish dish) {
-		dishes.add(dish);
+		dishes.add(dish); 
 	}
 	
 }
