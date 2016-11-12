@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <body>
-Welcome
+<h1>Welcom to Restaurant Searching System</h1>
+
 </body>
 </html>

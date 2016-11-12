@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,7 +28,8 @@ public class Restaurant implements Serializable{
 	private String phoneNum;
 	@Column(name="password")
 	private String password;
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.ALL})
 	@JoinTable(name="Offer",
 		joinColumns={@JoinColumn(name="R_Id")},
 		inverseJoinColumns={@JoinColumn(name="Dish_Id")})

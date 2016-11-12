@@ -23,14 +23,8 @@ public class User implements Serializable{
 
 	@Column(name="CustomerAccount")
 	private String userAccount;
-	@Column(name="FirstName")
-	private String firstName;
-	@Column(name="LastName")
-	private String lastName;
 	@Column(name="password")
 	private String password;
-	@Column(name="Email")
-	private String email;
 	@Column(name="last_visit")
 	private Date lastVisit;
 	@Column(name="last_ip")
@@ -54,7 +48,7 @@ public class User implements Serializable{
 //	}
 	
 	public String toString() {
-		return this.userAccount +", " + this.firstName + " " + lastName +", " + this.email + ".";
+		return this.userAccount;
 	}
 	
 	public int getUserId() {
@@ -68,25 +62,6 @@ public class User implements Serializable{
 	}
 	public void setUserAccount(String userAccount) {
 		this.userAccount = userAccount;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public Date getLastVisit() {

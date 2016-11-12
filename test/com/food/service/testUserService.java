@@ -34,10 +34,8 @@ public class testUserService {
 		@Test
 		public void findUserByUserName() {
 			User user = userService.findUserByName("wendy");
-			assertEquals(user.getLastName(),"Huang");
 			userService.loginSuccess(user);
 			User user2 = new User();
-			user2.setEmail("ymmmm@wpi.edu");
 			user2.setUserAccount("haruru");
 			user2.setPassword("0000");
 			userService.register(user2);

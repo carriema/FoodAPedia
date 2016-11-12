@@ -9,6 +9,7 @@ import com.food.domain.User;
 
 @Repository
 public class UserDao extends baseDao<User>{
+	
 	public UserDao(){
 		super(User.class);
 	}

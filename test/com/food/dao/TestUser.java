@@ -30,8 +30,7 @@ public class TestUser {
 	@Test
 	public void testFindUserByserAccount() {
 		User user = userDao.findUserByserAccount("wendy");
-		assertEquals(user.getFirstName(),"Liyan");
-		assertTrue(!user.getFirstName().equals("haha"));
+		
 	}
 	@Test
 	public void testHashUserByAccount() {
@@ -53,8 +52,7 @@ public class TestUser {
 	public void save() {
 		User user = new User();
 		user.setUserAccount("erha");
-		user.setFirstName("yanyan");
-		user.setLastName("xiao");
+		
 		user.setPassword("0000");
 		user.setLastVisit(new Date());
 		userDao.save(user);

@@ -15,6 +15,6 @@
 		<input type="submit" value="Login">
 		<input type="reset" value="Reset">	
 		</form>
-		<a href="register.jsp">New User</a>
+		<button id="register" onclick="location.href='register.html'">Register</button>
 	</body>
 </html>
