@@ -1,6 +1,5 @@
 package com.food.dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,12 +22,26 @@ public class RestaurantDao extends baseDao<Restaurant>{
 //		int res = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{account, password});
 //		return res;
 //	}
-	@SuppressWarnings("rawtypes")
 	public List findRestaurantByResName(String name) {
-		String findByName = "SELECT * FROM Restaurant WHERE name LIKE ?"; 
+		String findByName = "FROM Restaurant as r WHERE r.name LIKE ?"; 
+		name = "%" + name + "%";
 		Object[] params = {name};
 		List restaurants = getHibernateTemplate().find(findByName, params);
 		return restaurants;
 	}
-	public 
+	public List findRestaurantByResAcc(String acc) {
+		String findByName = "FROM Restaurant WHERE account = ?"; 
+//		acc = "%" + acc + "%";
+		Object[] params = {acc};
+		List restaurants = getHibernateTemplate().find(findByName, params);
+		return restaurants;
+	}
+	@SuppressWarnings("rawtypes")
+	public List findRestaurantByDishName(String name) {
+		String findByDish = "from restaurant r inner join r.dishes where dishes.name like ?";
+		Object[] params = {name};
+		List restaurants = getHibernateTemplate().find(findByDish, params);
+		return restaurants;
+	}
+	
 }

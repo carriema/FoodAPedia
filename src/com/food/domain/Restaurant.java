@@ -20,14 +20,22 @@ public class Restaurant implements Serializable{
 	@GeneratedValue
 	@Column(name="R_Id")
 	private int RID;
+	
+	@Column(name="Name")
+	private String name;
+	
 	@Column(name="Account")
 	private String account;
+	
 	@Column(name="Address")
 	private String address;
+	
 	@Column(name="PhoneNo")
 	private String phoneNum;
+	
 	@Column(name="password")
 	private String password;
+	
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {CascadeType.ALL})
 	@JoinTable(name="Offer",
@@ -39,6 +47,12 @@ public class Restaurant implements Serializable{
 	}
 	public void setRID(int rID) {
 		RID = rID;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getAddress() {
 		return address;
