@@ -70,14 +70,23 @@ public class RestaurantDaoTest {
 		String name = "chuan";
 		List<Object[]> restaurants = restaurantDao.findRestaurantByGenre(name);
 		assertTrue(restaurants.size() > 0);
-		System.out.println(restaurants.size());
-		
+		System.out.println(restaurants.size());		
 		for (int i = 0; i < restaurants.size(); i++) {
 			Restaurant res = (Restaurant)restaurants.get(i)[0];
 			Dish dis = (Dish) restaurants.get(i)[1];
 			System.out.println(res.getName());
 			System.out.println(dis.getGenre());
 		}
+	}
+	@Test
+	public void testGetMatch(){
+		String acc = "Chua";
+		String password = "0000";
+		assertTrue(restaurantDao.getMatchCount(acc, password)> 0);
+	}
+	@Test
+	public void testGetDishes() {
+		
 	}
 	
 

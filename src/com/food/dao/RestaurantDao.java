@@ -17,6 +17,14 @@ public class RestaurantDao extends baseDao<Restaurant>{
 	public RestaurantDao() {
 		super(Restaurant.class);
 	}
+	public Long getMatchCount(String userName, String password){
+		System.out.println("getHere");
+		String sqlStr = "SELECT count(*) from Restaurant WHERE Account = ? and password = ?";
+		Object[] params = {userName, password};
+		//List res1 = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{userName, password});
+		 List res = getHibernateTemplate().find(sqlStr, params);
+		return (Long) res.get(0);
+	}
 //	public int getMathCount(String account, String password){
 //		String sqlStr = "SELECT count(*) from Restaurant WHERE Account = ? and password = ?";
 //		int res = jdbcTemplate.queryForObject(sqlStr, Integer.class, new Object[]{account, password});

@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,8 @@ public class Dish implements Serializable{
 	private String genre;
 	@ManyToMany(mappedBy="dishes")
 	private Set<Restaurant> restaurants;
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.ALL})
 	@JoinTable(name="Cuisine",
 			joinColumns={@JoinColumn(name="Dish_Id")},
 			inverseJoinColumns={@JoinColumn(name="Ingredient_Id")})
