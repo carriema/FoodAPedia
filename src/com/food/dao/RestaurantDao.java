@@ -38,10 +38,19 @@ public class RestaurantDao extends baseDao<Restaurant>{
 	}
 	@SuppressWarnings("rawtypes")
 	public List findRestaurantByDishName(String name) {
-		String findByDish = "from restaurant r inner join r.dishes where dishes.name like ?";
+		String findByDish = "From Restaurant r join r.dishes d where d.dishName Like ?";
+		name = "%" + name + "%";
 		Object[] params = {name};
 		List restaurants = getHibernateTemplate().find(findByDish, params);
 		return restaurants;
 	}
+	public List findRestaurantByGenre(String genre) {
+		String findByDish = "From Restaurant r join r.dishes d where d.genre Like ?";
+		genre = "%" + genre + "%";
+		Object[] params = {genre};
+		List restaurants = getHibernateTemplate().find(findByDish, params);
+		return restaurants;
+	}
+	
 	
 }

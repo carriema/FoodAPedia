@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.food.domain.Dish;
 import com.food.domain.Restaurant;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:restaurantsearch.xml"})
@@ -47,8 +48,36 @@ public class RestaurantDaoTest {
 	{
 		int id = 1;
 		Restaurant res = restaurantDao.get(id);
-		assertEquals(res.getAccount(),"Chua");
+		assertEquals(res.getAccount(),"Chua");	
+	}
+	@Test
+	public void testFindRestaurantByDishName() {
+		String name = "pizza";
+		List<Object[]> restaurants = restaurantDao.findRestaurantByDishName(name);
+		assertTrue(restaurants.size() > 0);
+		System.out.println(restaurants.size());
+		System.out.println(restaurants.get(0)[0]);
 		
+		for (int i = 0; i < restaurants.size(); i++) {
+			Restaurant res = (Restaurant)restaurants.get(i)[0];
+			Dish dis = (Dish) restaurants.get(i)[1];
+			System.out.println(res.getName());
+			System.out.println(dis.getDishName());
+		}
+	}
+	@Test
+	public void testFindRestaurantByGenre() {
+		String name = "chuan";
+		List<Object[]> restaurants = restaurantDao.findRestaurantByGenre(name);
+		assertTrue(restaurants.size() > 0);
+		System.out.println(restaurants.size());
+		
+		for (int i = 0; i < restaurants.size(); i++) {
+			Restaurant res = (Restaurant)restaurants.get(i)[0];
+			Dish dis = (Dish) restaurants.get(i)[1];
+			System.out.println(res.getName());
+			System.out.println(dis.getGenre());
+		}
 	}
 	
 
